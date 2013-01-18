@@ -22,8 +22,7 @@
 
 VERSION=$(sed -rn 's/.*const VERSION.*"([0-9.]+)".*/\1/p' main.go)
 FILES="routes/templates freedom-routes.etc README.md CHANGELOG.md"
-#RELEASE="homebrew/amd64 homebrew/386 windows/386 windows/amd64"
-RELEASE="homebrew/amd64 homebrew/386"
+RELEASE="homebrew/amd64 homebrew/386 windows/386 windows/amd64"
 
 declare -A OS_MAP=(
 	[homebrew]="darwin"
@@ -61,7 +60,7 @@ function package {
 	
 	echo "packing $platform/$arch" 
 	mkdir dist/freedom-routes-$VERSION
-	cp dist/* dist/freedom-routes-$VERSION 2>/dev/null
+	cp -r dist/* dist/freedom-routes-$VERSION 2>/dev/null
 
 	case $os in
 		linux | darwin )
