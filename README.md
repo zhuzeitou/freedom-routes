@@ -1,5 +1,5 @@
-freedom-routes, Intenet Freedom - generate routes for vpn.
-===========================================================
+freedom-routes, Intenet Freedom - add local routes in vpn for accessing local websites using direct link
+========================================================================================================
 
 |                |                                                             |
 |----------------|------------------------------------------------------       |
@@ -8,6 +8,7 @@ freedom-routes, Intenet Freedom - generate routes for vpn.
 | License:       | MIT-LICENSE                                                |
 | Documentation: | http://godoc.org/github.com/GutenYe/freedom-routes
 | Issue Tracker: | https://github.com/GutenYe/freedom-routes/issues |
+| Platforms:     | Linux, Mac OS X, Windows                         |
 
 Use ip data from APNIC to generate routes for vpn to make accessing websites in China use direct link, while accessing foreign websites use vpn. Which make browse websites much faster.
 
@@ -62,11 +63,17 @@ Ip data may change over time, so it's recommand to update every month.
 Install
 -------
 
+**Use Package**
+
+Mac OS X
+..
+
+**Use Source**
+
 	$ [sudo] go get github.com/GutenYe/freedom-routes
 	
 **Dependencies**
 
-* Go programming language
 * iproutes2 (Linux, Mac)
 
 Development 
