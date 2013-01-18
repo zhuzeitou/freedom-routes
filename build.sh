@@ -39,7 +39,6 @@ function build {
 
 	sed -i "/const ASSETS_MODE/s~.*~const ASSETS_MODE = \"$ASSETS_DIR\"~" routes/routes.go
 	CGO_ENABLED=$(cgo-enabled $os) GOOS=$os GOARCH=$arch $GOROOT/bin/go build -o "dist/freedom-routes.$os.$arch"
-	ln -sf freedom-routes.$os.$arch dist/freedom-routes
 	sed -i '/const ASSETS_MODE/s/.*/const ASSETS_MODE = "source"/' routes/routes.go
 }
 
@@ -71,6 +70,7 @@ if [ ! -d dist ]; then
 	mkdir dist
 	mkdir dist/freedom-routes
 	ln -s ../routes/templates dist
+	ln -s ../freedom-routes.etc dist
 fi
 
 is_package=false
@@ -100,3 +100,5 @@ case $1 in
 		[[ $is_package == true ]] && package $GOOS/$GOARCH
 		;;
 esac
+
+exit 0
