@@ -79,6 +79,14 @@ Install
 Development 
 ===========
 
+Build
+------
+
+	mkdir output
+	sed -i '/const ASSETS_MODE/s/.*/const ASSETS_MODE = "runtime"/' routes/routes.go
+	go build -o output/freedom-routes
+	cp routes/templates output
+
 Contributing 
 -------------
 

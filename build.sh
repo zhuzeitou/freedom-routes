@@ -1,17 +1,10 @@
 #!/bin/bash
 
-# Build
-#
-#   mkdir output
-#   sed -i '/const ASSETS_MODE/s/.*/const ASSETS_MODE = "runtime"/' routes/routes.go
-#   go build -o output/freedom-routes
-#   cp routes/templates output
-
 # Build binary for distribution.
 #
 # Usage:
 #
-#   GOROOT=x ./build.sh [options] [platform ...]
+#   ./build.sh [options] [platform ...]
 #     -d <assets_dir>
 #     -p              # packaging the binary
 #
@@ -22,14 +15,15 @@
 
 VERSION=$(sed -rn 's/.*const VERSION.*"([0-9.]+)".*/\1/p' main.go)
 FILES="routes/templates freedom-routes.etc README.md CHANGELOG.md"
-RELEASE="homebrew/amd64 homebrew/386 windows/386 windows/amd64"
+#RELEASE="homebrew/amd64 homebrew/386 windows/386 windows/amd64"
+RELEASE="homebrew/amd64 homebrew/386"
 
 declare -A OS_MAP=(
 	[homebrew]="darwin"
 )
 
 declare -A DIR_MAP=(
-	[homebrew]="/usr/share/Cellar/freedom-routes/$VERSION/share"
+	[homebrew]="/usr/share/freedom-routes"
 )
 
 function cgo-enabled { [[ "$1" == "$GOHOSTOS" ]] && echo 1 || echo 0; }
@@ -114,7 +108,8 @@ case $1 in
 		upload *.zip *.tar.gz
 		;;
 	upload )
-		upload *
+		shift
+		upload $*
 		;;
 	* )
 		GOROOT="/home/guten/dev/src/go/go"
