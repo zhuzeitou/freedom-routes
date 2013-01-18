@@ -13,6 +13,7 @@ import (
   "net/http"
   "math"
   "text/template"
+  "runtime"
 )
 
 const ASSETS_MODE = "source"
@@ -50,8 +51,10 @@ func Generate(templateName string, ips []Ip, outputDir string) {
     file, err := os.Create(output)
     if err != nil { panic(err) }
     defer file.Close()
-    err = file.Chmod(0755)
-    if err != nil { panic(err) }
+    if runtime.GOOS != "windows" {
+      err = file.Chmod(0755)
+      if err != nil { panic(err) }
+    }
     err = tmpl.Execute(file, data)
     if err != nil { panic(err) }
     fmt.Printf("Create %s\n", output)

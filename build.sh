@@ -17,62 +17,76 @@
 #
 # Example:
 #
-#   ./build.sh linux/amd64                       # linux x64 platform
-#   ./build.sh all                               # all platforms
+#   ./build.sh linux/amd64
 #   ./build.sh -d /usr/share/freedom-routes linux/amd64
 
-PLATFORMS="linux/386 linux/amd64 darwin/386 darwin/amd64 windows/386 windows/amd64"
-ASSETS_DIR="runtime"
+VERSION=$(sed -rn 's/.*const VERSION.*"([0-9.]+)".*/\1/p' main.go)
+FILES="routes/templates freedom-routes.etc README.md CHANGELOG.md"
+#RELEASE="homebrew/amd64 homebrew/386 windows/386 windows/amd64"
+RELEASE="homebrew/amd64 homebrew/386"
 
-GOROOT=${GOROOT-/home/guten/dev/src/go/go}
-eval "$($GOROOT/bin/go env)"
+declare -A OS_MAP=(
+	[homebrew]="darwin"
+)
 
-function cgo-enabled {
-	if [ "$1" = "$GOHOSTOS" ]; then echo 1; else echo 0; fi
+declare -A DIR_MAP=(
+	[homebrew]="/usr/share/Cellar/freedom-routes/$VERSION/share"
+)
+
+function cgo-enabled { [[ "$1" == "$GOHOSTOS" ]] && echo 1 || echo 0; }
+function ext { [[ $1 == "windows" ]] && echo .exe || echo ""; }
+
+# dist(platform, os, arch, assets_dir)
+function dist {
+	rm -r dist >/dev/null
+	mkdir dist
+
+	cp -r $FILES dist
+	build $*
 }
 
+# build(platform, os, arch, assets_dir)
 function build {
-	os=${1%/*}
-	arch=${1#*/}
+	platform=$1; os=$2; arch=$3; assets_dir=$4
+	echo -e "\nbuilding $platform/$arch"
 
-	echo "building $os/$arch"
-
-	sed -i "/const ASSETS_MODE/s~.*~const ASSETS_MODE = \"$ASSETS_DIR\"~" routes/routes.go
-	CGO_ENABLED=$(cgo-enabled $os) GOOS=$os GOARCH=$arch $GOROOT/bin/go build -o "dist/freedom-routes.$os.$arch"
+	sed -i "/const ASSETS_MODE/s~.*~const ASSETS_MODE = \"$assets_dir\"~" routes/routes.go
+	CGO_ENABLED=$(cgo-enabled $os) GOOS=$os GOARCH=$arch $GOROOT/bin/go build -o "dist/freedom-routes$(ext $os)"
 	sed -i '/const ASSETS_MODE/s/.*/const ASSETS_MODE = "source"/' routes/routes.go
 }
 
+# package(platform, os, arch)
 function package {
-	os=${1%/*}
-	arch=${1#*/}
+	platform=$1; os=$2; arch=$3;
 	
-	echo "packing $os/$arch" 
-	rm -r dist/freedom-routes/* 2>/dev/null
-
-	cd dist
-	cp -rL templates freedom-routes/
-	ext=$([[ $os == "windows" ]] && echo .exe || echo "")
-	cp freedom-routes.$os.$arch freedom-routes/freedom-routes$ext
+	echo "packing $platform/$arch" 
+	mkdir dist/freedom-routes-$VERSION
+	cp dist/* dist/freedom-routes-$VERSION 2>/dev/null
 
 	case $os in
 		linux | darwin )
-			tar zcvf freedom-routes.$os.$arch.tar.gz freedom-routes ;;
+			tar zcvf freedom-routes.$platform.$arch-$VERSION.tar.gz -C dist freedom-routes-$VERSION;;
 		windows ) 
-			zip freedom-routes.$os.$arch.zip freedom-routes ;;
+			rm ../freedom-routes.$platform.$arch.zip 2>/dev/null
+			cd dist && zip -r ../freedom-routes.$platform.$arch.zip freedom-routes-$VERSION && cd ..
+			;;
 	esac
+}
+
+function upload {
+	for file in $*; do
+		s3cmd put --acl-public $file s3://downloads.gutenye.com/freedom-routes/
+		#current=$(echo $file | sed -r 's/(.*)-[0-9.]+(\..*)$/\1\2/')
+		#s3cmd copy s3://downloads.gutenye.com/freedom-routes/$file s3://downloads.gutenye.com/freedom-routes/$current
+	done
 }
 
 #
 # main
 # ----
 
-if [ ! -d dist ]; then
-	mkdir dist
-	mkdir dist/freedom-routes
-	ln -s ../routes/templates dist
-	ln -s ../freedom-routes.etc dist
-fi
-
+eval "$(go env)"
+ASSETS_DIR="runtime"
 is_package=false
 
 while getopts "d:p" opt; do
@@ -85,19 +99,29 @@ done
 shift $(( OPTIND-1 ))
 
 case $1 in
-	all )
-		for platform in $PLATFORMS; do
-			build $platform
-			[[ $is_package == true ]] && package $platform
-		done
-		;;
 	"" )
-		build $GOOS/$GOARCH 
-		[[ $is_package == true ]] && package $GOOS/$GOARCH
+		dist $GOOS $GOOS $GOARCH $ASSETS_DIR
+		[[ $is_package == true ]] && package $GOOS $GOOS $GOARCH
+		;;
+	release )
+		GOROOT="/home/guten/dev/src/go/go"
+		rm *.zip *.tar.gz 2>/dev/null
+		for release in $RELEASE; do
+			platform=${release%/*}; arch=${release#*/}; os=${OS_MAP[$platform]-$platform}
+			assets_dir=${DIR_MAP[$platform]-$ASSETS_DIR}
+			dist $platform $os $arch $assets_dir
+			package $platform $os $arch
+		done
+		upload *.zip *.tar.gz
+		;;
+	upload )
+		upload *
 		;;
 	* )
-		build $1
-		[[ $is_package == true ]] && package $GOOS/$GOARCH
+		GOROOT="/home/guten/dev/src/go/go"
+		platform=${1%/*}; arch=${1#*/}; os=${OS_MAP[$platform]-$platform}
+		dist $platform $os $arch $ASSETS_DIR
+		[[ $is_package == true ]] && package $platform $os $arch
 		;;
 esac
 
