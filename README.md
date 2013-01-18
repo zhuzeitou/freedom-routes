@@ -66,6 +66,7 @@ Install
 **Use Package**
 
 Mac OS X
+ArchLinux: `pacaur -S freedom-routes`
 ..
 
 **Use Source**

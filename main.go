@@ -7,17 +7,21 @@ import (
   "github.com/ogier/pflag"
 )
 
-func genRoutes(templateName string, outputDir string) {
-  ips := routes.FetchIps()
-  routes.Generate(templateName, ips, outputDir)
-}
+const VERSION = "1.0.0"
 
 var USAGE = `
 $ freedom-routes [options] <template>
 
 OPTIONS:
   -o, --output="."                 # output directory
+  -h, --help
+  --version
 `
+
+func genRoutes(templateName string, outputDir string) {
+  ips := routes.FetchIps()
+  routes.Generate(templateName, ips, outputDir)
+}
 
 func main() {
   pflag.Usage = func() {
@@ -25,9 +29,12 @@ func main() {
   }
 
   var output = pflag.StringP("output", "o", ".", "output directory")
+  var version = pflag.BoolP("version", "", false, "version")
   pflag.Parse()
 
-  if pflag.NArg() == 1 {
+  if *version {
+    fmt.Println(VERSION)
+  } else if pflag.NArg() == 1 {
     genRoutes(pflag.Arg(0), *output)
   } else {
     pflag.Usage()
