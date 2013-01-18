@@ -74,7 +74,7 @@ Mac OS X
 	
 **Dependencies**
 
-* iproutes2 (Linux, Mac)
+* iproute2 (Linux, Mac)
 
 Development 
 ===========
