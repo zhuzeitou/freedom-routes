@@ -12,10 +12,11 @@ import (
   "net"
   "net/http"
   "math"
-  "go/build"
   "text/template"
 )
 
+const ASSETS_MODE = "source"
+var ASSETS_PATH = getAssetsPath(ASSETS_MODE)
 var REMOTE_URL = "http://ftp.apnic.net/apnic/stats/apnic/delegated-apnic-latest"
 var LOCAL_PATH = "/etc/freedom-routes"
 
@@ -31,9 +32,7 @@ func (ip Ip) String() string {
 
 // Generate result files from template.
 func Generate(templateName string, ips []Ip, outputDir string) {
-  p, err := build.Default.Import("github.com/GutenYe/freedom-routes/routes", "", build.FindOnly)
-  if err != nil { panic(err) }
-  templateDir := filepath.Join(p.Dir, "templates", templateName)
+  templateDir := filepath.Join(ASSETS_PATH, "templates", templateName)
 
   type Data struct {
     Ips []Ip
