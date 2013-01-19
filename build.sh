@@ -33,7 +33,7 @@ function ext { [ $1 == "windows" ] && echo .exe || echo ""; }
 
 # dist{platform, os, arch, assets_dir}
 function dist {
-	rm -r dist >/dev/null
+	rm -r dist 2>/dev/null
 	mkdir dist
 
 	cp -r $FILES dist
