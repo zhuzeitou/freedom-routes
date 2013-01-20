@@ -12,17 +12,19 @@ freedom-routes, Intenet Freedom - add local routes in vpn for accessing local we
 
 Use ip data from APNIC to generate routes for vpn to make accessing websites in China use direct link, while accessing foreign websites use vpn. Which make browse websites much faster.
 
+*Please Help*: the mac package can't get into homebrew's main repository for it's un-notable, so if you like the project, please star it at the top of this page.
+
 Getting started
 ---------------
 
-Usage:
+**Usage**:
 
 	$ freedom-routes [options] <template>
       -o, --output="."                 # output directory
 
-View avaliable templates at [here](https://github.com/GutenYe/freedom-routes/tree/master/routes/templates)
+View all avaliable templates at [here](https://github.com/GutenYe/freedom-routes/tree/master/routes/templates)
 
-Linux and Openvpn
+**Linux (OpenVPN)**
 
 	$ freedom-routes linux -o /etc/openvpn 
 	> create /etc/openvpn/routes-up.sh
@@ -34,7 +36,7 @@ Linux and Openvpn
 		up ./routes-up.sh
 		down ./routes-down.sh
 
-RouterOS
+**RouterOS**
 
 	$ freedom-routes routeros
 
@@ -86,7 +88,7 @@ Build
 	mkdir output
 	sed -i '/const ASSETS_MODE/s/.*/const ASSETS_MODE = "runtime"/' routes/routes.go
 	go build -o output/freedom-routes
-	cp routes/templates output
+	cp -r routes/templates output
 
 Contributing 
 -------------
