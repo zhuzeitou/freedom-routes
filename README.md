@@ -67,7 +67,7 @@ Install
 
 **Use Package**
 
-* ArchLinux: `pacaur -S freedom-routes`
+* ArchLinux: `pacaur -S freedom-routes` # install [freedom-routes](https://aur.archlinux.org/packages/freedom-routes/) from AUR
 * Mac OS X: `brew tap gutenye/alt; brew install freedom-routes`
 * Windows: download [x64](http://downloads.gutenye.com/freedom-routes/freedom-routes.windows.amd64.zip) [x86](http://downloads.gutenye.com/freedom-routes/freedom-routes.windows.386.zip)
 
