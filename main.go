@@ -1,10 +1,10 @@
 package main
 
 import (
-  "fmt"
-  "os"
-  "github.com/GutenYe/freedom-routes/routes"
-  "github.com/ogier/pflag"
+	"fmt"
+	"github.com/GutenYe/freedom-routes/routes"
+	"github.com/ogier/pflag"
+	"os"
 )
 
 const VERSION = "1.0.0"
@@ -13,30 +13,30 @@ var USAGE = `
 $ freedom-routes [options] <template>
 
 OPTIONS:
-  -o, --output="."                 # output directory
-  -h, --help
-  --version
+	-o, --output="."                 # output directory
+	-h, --help
+	--version
 `
 
 func genRoutes(templateName string, outputDir string) {
-  ips := routes.FetchIps()
-  routes.Generate(templateName, ips, outputDir)
+	ips := routes.FetchIps()
+	routes.Generate(templateName, ips, outputDir)
 }
 
 func main() {
-  pflag.Usage = func() {
-    fmt.Fprintf(os.Stderr, USAGE)
-  }
+	pflag.Usage = func() {
+		fmt.Fprintf(os.Stderr, USAGE)
+	}
 
-  var output = pflag.StringP("output", "o", ".", "output directory")
-  var version = pflag.BoolP("version", "", false, "version")
-  pflag.Parse()
+	var output = pflag.StringP("output", "o", ".", "output directory")
+	var version = pflag.BoolP("version", "", false, "version")
+	pflag.Parse()
 
-  if *version {
-    fmt.Println(VERSION)
-  } else if pflag.NArg() == 1 {
-    genRoutes(pflag.Arg(0), *output)
-  } else {
-    pflag.Usage()
-  }
+	if *version {
+		fmt.Println(VERSION)
+	} else if pflag.NArg() == 1 {
+		genRoutes(pflag.Arg(0), *output)
+	} else {
+		pflag.Usage()
+	}
 }
