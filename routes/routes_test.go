@@ -41,8 +41,8 @@ func TestCidr2mask(t *testing.T) {
 }
 
 func prepareTmpDir() {
-	os.RemoveAll("test_tmp")
-	os.Mkdir("test_tmp", 0755)
+	os.RemoveAll("testtmp")
+	os.Mkdir("testtmp", 0755)
 }
 
 func verifyGenerate(t *testing.T, path string) {
@@ -69,9 +69,9 @@ func TestGenerate(t *testing.T) {
 		Ip{"1.1.1.1", "32", "255.255.255.255"},
 	}
 
-	Generate("linux", ips, "test_tmp")
-	verifyGenerate(t, "test_tmp/routes-up.sh")
-	verifyGenerate(t, "test_tmp/routes-down.sh")
+	Generate("linux", ips, "testtmp")
+	verifyGenerate(t, "testtmp/routes-up.sh")
+	verifyGenerate(t, "testtmp/routes-down.sh")
 }
 
 func verifyIps(t *testing.T, methodName string, ins, outs []Ip) {
@@ -84,7 +84,7 @@ func verifyIps(t *testing.T, methodName string, ins, outs []Ip) {
 }
 
 func TestFetchLocalIps(t *testing.T) {
-	LOCAL_PATH = "test_data/routes"
+	LOCAL_PATH = "testdata/routes"
 	outs := []Ip{
 		Ip{"192.168.1.1", "24", "255.255.255.0"},
 		Ip{"1.1.1.1", "32", "255.255.255.255"},

@@ -13,9 +13,9 @@
 #   ./build.sh -d /usr/share/freedom-routes    # build with system go
 #   ./build.sh release                         # build $RELEASEs with user complied go and upload the package to s3.
 
-VERSION=$(sed -rn 's/.*const VERSION.*"([0-9.]+)".*/\1/p' main.go)
-FILES="routes/templates freedom-routes.etc README.md CHANGELOG.md"
+EXTRA_FILES="routes/templates freedom-routes.etc README.md CHANGELOG.md"
 RELEASE="homebrew/amd64 homebrew/386 windows/386 windows/amd64"
+VERSION=$(sed -rn 's/.*const VERSION.*"([0-9.]+)".*/\1/p' main.go)
 declare -A OS_MAP=(
 	[homebrew]="darwin"
 )
@@ -36,14 +36,13 @@ function dist {
 	rm -r dist 2>/dev/null
 	mkdir dist
 
-	cp -r $FILES dist
+	cp -r $EXTRA_FILES dist
 	build
 }
 
 # build{platform, os, arch, assets_dir}
 function build {
 	echo -e "\nbuilding $platform/$arch"
-
 	sed -i "/const ASSETS_MODE/s~.*~const ASSETS_MODE = \"$assets_dir\"~" routes/routes.go
 	CGO_ENABLED=$(cgo_enabled $os) GOOS=$os GOARCH=$arch $GOROOT/bin/go build -o "dist/freedom-routes$(ext $os)"
 	sed -i '/const ASSETS_MODE/s/.*/const ASSETS_MODE = "source"/' routes/routes.go

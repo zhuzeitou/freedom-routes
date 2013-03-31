@@ -1,8 +1,8 @@
 package main
 
 import (
+	"./routes"
 	"fmt"
-	"github.com/GutenYe/freedom-routes/routes"
 	"github.com/ogier/pflag"
 	"os"
 )
