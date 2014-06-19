@@ -1,40 +1,53 @@
-freedom-routes, Intenet Freedom - add local routes in vpn for accessing local websites using direct link
-========================================================================================================
+freedom-routes, chnroutes的改进版本, 大幅提升VPN浏览国内网页速度.
+================================================================
 
 |                |                                                             |
 |----------------|------------------------------------------------------       |
-| Homepage:      | https://github.com/GutenYe/freedom-routes        |
-| Author:	       | Guten                                            |
-| License:       | MIT-LICENSE                                                |
-| Documentation: | http://godoc.org/github.com/GutenYe/freedom-routes
-| Issue Tracker: | https://github.com/GutenYe/freedom-routes/issues |
-| Platforms:     | Linux, Mac OS X, Windows                         |
+| 主页:          | https://github.com/GutenYe/freedom-routes        |
+| 作者:	         | Guten                                            |
+| 版权:          | MIT-LICENSE                                                |
+| 提交Bug:       | https://github.com/GutenYe/freedom-routes/issues |
+| 平台:          | Linux, Mac OS X, Windows, OpenWRT                         |
 
-Use ip data from APNIC to generate routes for vpn to make accessing websites in China use direct link, while accessing foreign websites use vpn. Which make browse websites much faster.
+生成一个可以运行的脚本, 当VPN运行的时候, 自动添加国内的IP地址到系统路由表, 直接连接访问国内的网站, 用VPN访问国外的网站, 从而提升网页浏览速度. (例如: 使用前ping baidu.com是300ms延迟, 使用后可以减少到30ms)
 
-*Please Help*: the mac package can't get into homebrew's main repository for it's un-notable, so if you like the project, please star it at the top of this page.
+## 对chnroutes的改进
 
-Getting started
----------------
+1. Linux下导入路由的速度更快
+2. 支持模板, 可以自定义脚本
+3. Go语言写, 单exe运行文件
+
+## 使用方法
 
 **Usage**:
 
 	$ freedom-routes [options] <template>
       -o, --output="."                 # output directory
 
-View all avaliable templates at [here](https://github.com/GutenYe/freedom-routes/tree/master/routes/templates)
+查看所有的[模板](https://github.com/GutenYe/freedom-routes/tree/master/routes/templates)
 
 **Linux (OpenVPN)**
 
-	$ freedom-routes linux -o /etc/openvpn 
-	> create /etc/openvpn/routes-up.sh
-	> create /etc/openvpn/routes-down.sh
-
-	$ edit /etc/openvpn/x.conf
+	# freedom-routes linux -o /etc/openvpn
+	# edit /etc/openvpn/foo.conf
 
 		script-security 2
 		up ./routes-up.sh
 		down ./routes-down.sh
+
+**Mac OS X**
+
+	$ freedom-routes mac
+	# ./routes-up.sh
+
+**Windows**
+
+	$ freedom-routes windows
+	# ./routes-up.bat
+
+**OpenWRT**
+
+TBA
 
 **RouterOS**
 
@@ -52,62 +65,45 @@ Others, see documentation at [here](https://github.com/GutenYe/chnroutes/blob/ma
 	# create /etc/freedom-routes
 		70.33.217.1/32
 
-**Auto update IP data**
+**自动更新**
 
-Ip data may change over time, so it's recommand to update every month.
+这些ip数据不是固定不变的, 尽管变化不大, 但还是建议每隔两三个月更新一次.
 
-	$ create /etc/cron.monthly/freedom-routes with 0755 mode
+(Linux)
+
+	$ create /etc/cron.weekly/freedom-routes with 0755 mode
 
 		#!/bin/bash
 
 		freedom-routes linux -o /etc/openvpn
 
-Install
--------
 
-**Use Package**
+## 安装
 
-* ArchLinux: `pacaur -S freedom-routes` # install [freedom-routes](https://aur.archlinux.org/packages/freedom-routes/) from AUR
-* Mac OS X: `brew tap gutenye/alt; brew install freedom-routes`
-* Windows: download [x64](http://downloads.gutenye.com/freedom-routes/freedom-routes.windows.amd64.zip) [x86](http://downloads.gutenye.com/freedom-routes/freedom-routes.windows.386.zip)
+- ArchLinux: `yaourt -S freedom-routes` # install [freedom-routes](https://aur.archlinux.org/packages/freedom-routes/) from AUR
+- Mac OS X: `brew tap gutenye/alt; brew install freedom-routes`
+- Windows: 下载[x64](http://downloads.gutenye.com/freedom-routes/freedom-routes.windows.amd64.zip)(64位), [x86](http://downloads.gutenye.com/freedom-routes/freedom-routes.windows.386.zip)(32位)
 
-**Use Source**
 
-	$ [sudo] go get github.com/GutenYe/freedom-routes
-	
-**Dependencies**
-
-* iproute2 (Linux, Mac)
-
-Development 
-===========
+# 开发
 
 Build
 ------
 
-	mkdir output
-	sed -i '/const ASSETS_MODE/s/.*/const ASSETS_MODE = "runtime"/' routes/routes.go
-	go build -o output/freedom-routes
-	cp -r routes/templates output
+	$ mkdir output
+	$ sed -i '/const ASSETS_MODE/s/.*/const ASSETS_MODE = "runtime"/' routes/routes.go
+	$ go build -o output/freedom-routes
+	$ cp -r routes/templates output
 
-Contributing 
--------------
+## 任何人都可以帮助这个项目
 
-* Submit any bugs/features/ideas to github issue tracker.
+- Submit any bugs/features/ideas to github issue tracker.
 
 Please see [Contibution Documentation](https://github.com/GutenYe/freedom-routes/blob/master/CONTRIBUTING.md).
 
 A list of [Contributors](https://github.com/GutenYe/freedom-routes/contributors).
 
-Resources
----------
-
-* [chnroutes](https://github.com/GutenYe/chnroutes): scripts help chinese netizen with vpn.
-* [Pacaur](https://github.com/Spyhawk/pacaur): An AUR helper for ArchLinux.
-* [Homebrew](https://github.com/mxcl/homebrew): The missing package manager for Mac OS X.
-
-Copyright
----------
+## 版权
 
 (the MIT License)
 

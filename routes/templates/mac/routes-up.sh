@@ -1,12 +1,7 @@
 #!/bin/sh
 
 export PATH="/bin:/sbin:/usr/sbin:/usr/bin"
-
-OLDGW=`netstat -nr | grep '^default' | grep -v "$1" | sed 's/default *\\([0-9\.]*\\) .*/\\1/'`
-
-if [ ! -e /tmp/freedom_oldgw ]; then
-    echo "${OLDGW}" > /tmp/freedom_oldgw
-fi
+OLDGW=`route -n get default | grep gateway | awk '{print $2}'`
 
 dscacheutil -flushcache
 
