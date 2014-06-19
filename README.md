@@ -60,7 +60,9 @@ TBA
 
 **本地的配置文件**
 
-	# create /etc/freedom-routes
+(Linux)
+
+	# edit /etc/freedom-routes
 		70.33.217.1/32
 
 **自动更新**
@@ -78,8 +80,8 @@ TBA
 
 ## 安装
 
-- **ArchLinux**: 从AUR里面安装 `yaourt -S freedom-routes`
-- **Mac OS X**: `brew tap gutenye/alt; brew install freedom-routes`
+- **ArchLinux**: 从AUR里面安装 `$ yaourt -S freedom-routes`
+- **Mac OS X**: `$ brew tap sabersalv/alt && brew install freedom-routes`
 - **Windows**: 下载[x64](http://downloads.gutenye.com/freedom-routes/freedom-routes.windows.amd64.zip)(64位), [x86](http://downloads.gutenye.com/freedom-routes/freedom-routes.windows.386.zip)(32位)
 
 # 开发
