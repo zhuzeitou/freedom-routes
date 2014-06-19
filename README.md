@@ -3,10 +3,10 @@ freedom-routes, chnroutes的改进版本, 大幅提升VPN浏览国内网页速�
 
 |                |                                                             |
 |----------------|------------------------------------------------------       |
-| 主页:          | https://github.com/GutenYe/freedom-routes        |
-| 作者:	         | Guten                                            |
+| 主页:          | https://github.com/SaberSalv/freedom-routes        |
+| 作者:	         | Saber                                            |
 | 版权:          | MIT-LICENSE                                                |
-| 提交Bug:       | https://github.com/GutenYe/freedom-routes/issues |
+| 提交Bug:       | https://github.com/SaberSalv/freedom-routes/issues |
 | 支持平台:      | Linux, Mac OS X, Windows, OpenWRT                         |
 
 生成一个可以运行的脚本, 当VPN运行的时候, 自动添加国内的IP地址到系统`路由表`, 用`直接连接`方式访问国内的网站, 用`VPN`方式访问国外的网站, 从而提升网页浏览速度. (例如: 使用前ping baidu.com是300ms延迟, 使用后可以减少到30ms)
@@ -24,7 +24,7 @@ freedom-routes, chnroutes的改进版本, 大幅提升VPN浏览国内网页速�
 	$ freedom-routes [options] <template>
       -o, --output="."                 # 输出脚本目录
 
-查看所有的[模板](https://github.com/GutenYe/freedom-routes/tree/master/routes/templates)
+查看所有的[模板](https://github.com/SaberSalv/freedom-routes/tree/master/routes/templates)
 
 **Linux (OpenVPN)**
 
@@ -58,9 +58,7 @@ TBA
 * add a default route with `routing-mark` set to `freedomroutes.domestic`
 * see `/ip route rule print` for more details..
 
-Others, see documentation at [here](https://github.com/GutenYe/chnroutes/blob/master/README.md) (Chinese)
-
-**Add IPs from local**
+**本地的配置文件**
 
 	# create /etc/freedom-routes
 		70.33.217.1/32
@@ -86,8 +84,8 @@ Others, see documentation at [here](https://github.com/GutenYe/chnroutes/blob/ma
 
 # 开发
 
-Build
-------
+编译
+----
 
 	$ mkdir output
 	$ sed -i '/const ASSETS_MODE/s/.*/const ASSETS_MODE = "runtime"/' routes/routes.go
@@ -96,17 +94,17 @@ Build
 
 ## 任何人都可以帮助这个项目
 
-- Submit any bugs/features/ideas to github issue tracker.
+- 推广本项目: 点击右上方的star按钮
+- 提交Bug/建议
+- 帮助作者提高文档
 
-Please see [Contibution Documentation](https://github.com/GutenYe/freedom-routes/blob/master/CONTRIBUTING.md).
-
-A list of [Contributors](https://github.com/GutenYe/freedom-routes/contributors).
+感谢所有[贡献者](https://github.com/SaberSalv/freedom-routes/contributors).
 
 ## 版权
 
 (the MIT License)
 
-Copyright (c) 2013 Guten
+Copyright (c) 2013-2014 Saber
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the 'Software'), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 
