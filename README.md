@@ -7,9 +7,9 @@ freedom-routes, chnroutes的改进版本, 大幅提升VPN浏览国内网页速�
 | 作者:	         | Guten                                            |
 | 版权:          | MIT-LICENSE                                                |
 | 提交Bug:       | https://github.com/GutenYe/freedom-routes/issues |
-| 平台:          | Linux, Mac OS X, Windows, OpenWRT                         |
+| 支持平台:      | Linux, Mac OS X, Windows, OpenWRT                         |
 
-生成一个可以运行的脚本, 当VPN运行的时候, 自动添加国内的IP地址到系统路由表, 直接连接访问国内的网站, 用VPN访问国外的网站, 从而提升网页浏览速度. (例如: 使用前ping baidu.com是300ms延迟, 使用后可以减少到30ms)
+生成一个可以运行的脚本, 当VPN运行的时候, 自动添加国内的IP地址到系统`路由表`, 用`直接连接`方式访问国内的网站, 用`VPN`方式访问国外的网站, 从而提升网页浏览速度. (例如: 使用前ping baidu.com是300ms延迟, 使用后可以减少到30ms)
 
 ## 对chnroutes的改进
 
@@ -22,7 +22,7 @@ freedom-routes, chnroutes的改进版本, 大幅提升VPN浏览国内网页速�
 **Usage**:
 
 	$ freedom-routes [options] <template>
-      -o, --output="."                 # output directory
+      -o, --output="."                 # 输出脚本目录
 
 查看所有的[模板](https://github.com/GutenYe/freedom-routes/tree/master/routes/templates)
 
@@ -80,10 +80,9 @@ Others, see documentation at [here](https://github.com/GutenYe/chnroutes/blob/ma
 
 ## 安装
 
-- ArchLinux: `yaourt -S freedom-routes` # install [freedom-routes](https://aur.archlinux.org/packages/freedom-routes/) from AUR
-- Mac OS X: `brew tap gutenye/alt; brew install freedom-routes`
-- Windows: 下载[x64](http://downloads.gutenye.com/freedom-routes/freedom-routes.windows.amd64.zip)(64位), [x86](http://downloads.gutenye.com/freedom-routes/freedom-routes.windows.386.zip)(32位)
-
+- **ArchLinux**: 从AUR里面安装 `yaourt -S freedom-routes`
+- **Mac OS X**: `brew tap gutenye/alt; brew install freedom-routes`
+- **Windows**: 下载[x64](http://downloads.gutenye.com/freedom-routes/freedom-routes.windows.amd64.zip)(64位), [x86](http://downloads.gutenye.com/freedom-routes/freedom-routes.windows.386.zip)(32位)
 
 # 开发
 
