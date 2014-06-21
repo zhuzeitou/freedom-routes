@@ -82,7 +82,7 @@ TBA
 
 - **ArchLinux**: 从AUR里面安装 `$ yaourt -S freedom-routes`
 - **Mac OS X**: `$ brew install sabersalv/alt/freedom-routes`
-- **Windows**: 下载[x64](http://downloads.gutenye.com/freedom-routes/freedom-routes.windows.amd64.zip)(64位), [x86](http://downloads.gutenye.com/freedom-routes/freedom-routes.windows.386.zip)(32位)
+- **Windows**: 下载[x64](http://downloads.saber.li/freedom-routes/freedom-routes.windows.amd64.zip)(64位), [x86](http://downloads.saber.li/freedom-routes/freedom-routes.windows.386.zip)(32位)
 
 # 开发
 
