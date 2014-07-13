@@ -101,6 +101,7 @@ TBA
 - 帮助作者提高文档
 
 感谢所有[贡献者](https://github.com/SaberSalv/freedom-routes/contributors).
+感谢原来的[chnroutes](https://github.com/fivesheep/chnroutes)作者.
 
 ## 版权
 
