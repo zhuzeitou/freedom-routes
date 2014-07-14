@@ -66,9 +66,9 @@ function package {
 
 function upload {
 	for file in $*; do
-		s3cmd put --acl-public $file s3://downloads.gutenye.com/freedom-routes/
+		s3cmd put --acl-public $file s3://downloads.sabersalv.li/freedom-routes/
 		#current=$(echo $file | sed -r 's/(.*)-[0-9.]+(\..*)$/\1\2/')
-		#s3cmd copy s3://downloads.gutenye.com/freedom-routes/$file s3://downloads.gutenye.com/freedom-routes/$current
+		#s3cmd copy s3://downloads.sabersalv.li/freedom-routes/$file s3://downloads.sabersalv.li/freedom-routes/$current
 	done
 }
 

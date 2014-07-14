@@ -3,11 +3,11 @@ freedom-routes, Intenet Freedom - add local routes in vpn for accessing local we
 
 |                |                                                             |
 |----------------|------------------------------------------------------       |
-| Homepage:      | https://github.com/GutenYe/freedom-routes        |
+| Homepage:      | https://github.com/SaberSalv/freedom-routes        |
 | Author:	       | Guten                                            |
 | License:       | MIT-LICENSE                                                |
-| Documentation: | http://godoc.org/github.com/GutenYe/freedom-routes
-| Issue Tracker: | https://github.com/GutenYe/freedom-routes/issues |
+| Documentation: | http://godoc.org/github.com/SaberSalv/freedom-routes
+| Issue Tracker: | https://github.com/SaberSalv/freedom-routes/issues |
 | Platforms:     | Linux, Mac OS X, Windows                         |
 
 Use ip data from APNIC to generate routes for vpn to make accessing websites in China use direct link, while accessing foreign websites use vpn. Which make browse websites much faster.
@@ -22,11 +22,11 @@ Getting started
 	$ freedom-routes [options] <template>
       -o, --output="."                 # output directory
 
-View all avaliable templates at [here](https://github.com/GutenYe/freedom-routes/tree/master/routes/templates)
+View all avaliable templates at [here](https://github.com/SaberSalv/freedom-routes/tree/master/routes/templates)
 
 **Linux (OpenVPN)**
 
-	$ freedom-routes linux -o /etc/openvpn 
+	$ freedom-routes linux -o /etc/openvpn
 	> create /etc/openvpn/routes-up.sh
 	> create /etc/openvpn/routes-down.sh
 
@@ -45,7 +45,7 @@ View all avaliable templates at [here](https://github.com/GutenYe/freedom-routes
 * add a default route with `routing-mark` set to `freedomroutes.domestic`
 * see `/ip route rule print` for more details..
 
-Others, see documentation at [here](https://github.com/GutenYe/chnroutes/blob/master/README.md) (Chinese)
+Others, see documentation at [here](https://github.com/SaberSalv/chnroutes/blob/master/README.md) (Chinese)
 
 **Add IPs from local**
 
@@ -68,12 +68,12 @@ Install
 **Use Package**
 
 * ArchLinux: `pacaur -S freedom-routes` # install [freedom-routes](https://aur.archlinux.org/packages/freedom-routes/) from AUR
-* Mac OS X: `brew tap gutenye/alt; brew install freedom-routes`
-* Windows: download [x64](http://downloads.gutenye.com/freedom-routes/freedom-routes.windows.amd64.zip) [x86](http://downloads.gutenye.com/freedom-routes/freedom-routes.windows.386.zip)
+* Mac OS X: `brew install sabersalv/alt/freedom-routes`
+* Windows: download [x64](http://downloads.sabersalv.li/freedom-routes/freedom-routes.windows.amd64.zip) [x86](http://downloads.sabersalv.li/freedom-routes/freedom-routes.windows.386.zip)
 
 **Use Source**
 
-	$ [sudo] go get github.com/GutenYe/freedom-routes
+	$ [sudo] go get github.com/SaberSalv/freedom-routes
 	
 **Dependencies**
 
@@ -95,14 +95,14 @@ Contributing
 
 * Submit any bugs/features/ideas to github issue tracker.
 
-Please see [Contibution Documentation](https://github.com/GutenYe/freedom-routes/blob/master/CONTRIBUTING.md).
+Please see [Contibution Documentation](https://github.com/SaberSalv/freedom-routes/blob/master/CONTRIBUTING.md).
 
-A list of [Contributors](https://github.com/GutenYe/freedom-routes/contributors).
+A list of [Contributors](https://github.com/SaberSalv/freedom-routes/contributors).
 
 Resources
 ---------
 
-* [chnroutes](https://github.com/GutenYe/chnroutes): scripts help chinese netizen with vpn.
+* [chnroutes](https://github.com/SaberSalv/chnroutes): scripts help chinese netizen with vpn.
 * [Pacaur](https://github.com/Spyhawk/pacaur): An AUR helper for ArchLinux.
 * [Homebrew](https://github.com/mxcl/homebrew): The missing package manager for Mac OS X.
 

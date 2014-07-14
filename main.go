@@ -1,7 +1,7 @@
 package main
 
 import (
-	"./routes"
+	"github.com/SaberSalv/freedom-routes/routes"
 	"fmt"
 	"github.com/ogier/pflag"
 	"os"

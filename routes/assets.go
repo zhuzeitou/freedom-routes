@@ -24,7 +24,7 @@ func getAssetsPath(mode string) (dir string) {
 }
 
 func getSourceDir() (string, error) {
-	p, err := build.Default.Import("github.com/GutenYe/freedom-routes/routes", "", build.FindOnly)
+	p, err := build.Default.Import("github.com/SaberSalv/freedom-routes/routes", "", build.FindOnly)
 
 	return p.Dir, err
 }
