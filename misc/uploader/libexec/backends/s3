@@ -1,0 +1,5 @@
+s3_upload() {
+	s3cmd put "$@" --acl-public s3://dl.saber.li/freedom-routes/
+}
+
+# vim: ft=sh

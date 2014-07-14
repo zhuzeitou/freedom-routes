@@ -1,0 +1,31 @@
+#!/usr/bin/env bash
+#
+# Summary: Upload files to cloud storage
+#
+# Usage: app upload <backend> <file ..>
+#
+# Example:
+#
+#   app upload s3 *.txt
+#
+# Upload files to different cloud storages
+
+set -e
+[ -n "$APP_DEBUG" ] && set -x
+
+source "$APP_ROOT/libexec/backends/s3"
+
+#####
+# Main
+#####
+
+if [ -z "$1" ]; then
+  app-help --usage upload >&2
+  exit 1
+fi
+
+backend=$1
+shift
+
+cmd="${backend}_upload"
+"$cmd" "$@"

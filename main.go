@@ -4,13 +4,14 @@ import (
 	"github.com/SaberSalv/freedom-routes/routes"
 	"fmt"
 	"github.com/ogier/pflag"
+	"path/filepath"
 	"os"
 )
 
 const VERSION = "1.0.0"
 
 var USAGE = `
-$ freedom-routes [options] <template>
+$ freedom-routes [options] <template ..>
 
 OPTIONS:
 	-o, --output="."                 # output directory
@@ -18,9 +19,16 @@ OPTIONS:
 	--version
 `
 
-func genRoutes(templateName string, outputDir string) {
+func genRoutes(templateNames []string, outputDir string) {
 	ips := routes.FetchIps()
-	routes.Generate(templateName, ips, outputDir)
+
+	if len(templateNames) == 1 {
+		routes.Generate(templateNames[0], ips, outputDir)
+	} else {
+		for _, templateName := range templateNames {
+			routes.Generate(templateName, ips, filepath.Join(outputDir, templateName))
+		}
+	}
 }
 
 func main() {
@@ -34,8 +42,8 @@ func main() {
 
 	if *version {
 		fmt.Println(VERSION)
-	} else if pflag.NArg() == 1 {
-		genRoutes(pflag.Arg(0), *output)
+	} else if pflag.NArg() > 0 {
+		genRoutes(pflag.Args(), *output)
 	} else {
 		pflag.Usage()
 	}
