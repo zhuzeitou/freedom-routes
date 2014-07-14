@@ -14,7 +14,7 @@ freedom-routes, chnroutes的改进版本, 大幅提升VPN浏览国内网页速�
 
 ## 对chnroutes的改进
 
-1. Linux下导入路由的速度更快
+1. Linux下导入路由的速度更快, 秒时间导入
 2. 支持模板, 可以自定义脚本
 3. Go语言写, 单exe运行文件
 
@@ -44,6 +44,8 @@ Linux: Desktop, OpenWRT, DD-WRT, ASUSWRT
 	# ./routes-up.sh
 
 **Windows**
+
+Windows导入需要好几分钟, 请耐心等待, 有哪位大神知道有更好的方法的话, 求指教.
 
 	$ freedom-routes windows
 	# ./routes-up.bat

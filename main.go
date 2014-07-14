@@ -23,10 +23,13 @@ func genRoutes(templateNames []string, outputDir string) {
 	ips := routes.FetchIps()
 
 	if len(templateNames) == 1 {
+		os.MkdirAll(outputDir, 0755)
 		routes.Generate(templateNames[0], ips, outputDir)
 	} else {
 		for _, templateName := range templateNames {
-			routes.Generate(templateName, ips, filepath.Join(outputDir, templateName))
+			output := filepath.Join(outputDir, templateName)
+			os.MkdirAll(output, 0755)
+			routes.Generate(templateName, ips, output)
 		}
 	}
 }
