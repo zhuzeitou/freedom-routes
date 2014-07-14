@@ -26,6 +26,8 @@ freedom-routes, chnroutes的改进版本, 大幅提升VPN浏览国内网页速�
 
 查看所有的[模板](https://github.com/SaberSalv/freedom-routes/tree/master/routes/templates)
 
+Linux: Desktop, OpenWRT, DD-WRT, ASUSWRT
+
 **Linux (OpenVPN)**
 
 	# freedom-routes linux -o /etc/openvpn
@@ -44,10 +46,6 @@ freedom-routes, chnroutes的改进版本, 大幅提升VPN浏览国内网页速�
 
 	$ freedom-routes windows
 	# ./routes-up.bat
-
-**OpenWRT**
-
-TBA
 
 **RouterOS**
 
@@ -96,7 +94,7 @@ TBA
 
 ## 任何人都可以帮助这个项目
 
-- 推广本项目: 点击右上方的star按钮
+- 请保持低调, 不要推广本项目, 自己用的可以就好了, 不要点击右上角的star按钮.
 - 提交Bug/建议
 - 帮助作者提高文档
 
