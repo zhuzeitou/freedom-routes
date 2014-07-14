@@ -1,4 +1,4 @@
-#!/bin/sh 
+#!/bin/sh
 
 export PATH="/bin:/sbin:/usr/sbin:/usr/bin"
 
