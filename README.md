@@ -101,7 +101,7 @@ Windows导入需要好几分钟, 请耐心等待, 有哪位大神知道有更好
 - 提交Bug/建议
 - 帮助作者提高文档
 
-感谢所有[贡献者](https://github.com/SaberSalv/freedom-routes/contributors).
+感谢所有[贡献者](https://github.com/SaberSalv/freedom-routes/contributors). </br>
 感谢原来的[chnroutes](https://github.com/fivesheep/chnroutes)作者.
 
 ## 版权
