@@ -6,8 +6,9 @@ freedom-routes, chnroutes的改进版本, 大幅提升VPN浏览国内网页速�
 | 主页:          | https://github.com/SaberSalv/freedom-routes        |
 | 作者:	         | Saber                                            |
 | 版权:          | MIT-LICENSE                                                |
-| 提交Bug:       | https://github.com/SaberSalv/freedom-routes/issues |
-| 支持平台:      | Linux, Mac OS X, Windows, OpenWRT                         |
+| 提交Bug:       | https://github.com/SaberSalv/freedom-routes/issues   |
+| API文档        | http://godoc.org/github.com/SaberSalv/freedom-routes |
+| 支持平台:      | Linux, Mac OS X, Windows, OpenWRT, DD-WRT, ASUSWRT   |
 
 生成一个可以运行的脚本, 当VPN运行的时候, 自动添加国内的IP地址到系统`路由表`, 用`直接连接`方式访问国内的网站, 用`VPN`方式访问国外的网站, 从而提升网页浏览速度. (例如: 使用前ping baidu.com是300ms延迟, 使用后可以减少到30ms)
 
@@ -80,7 +81,7 @@ Linux: Desktop, OpenWRT, DD-WRT, ASUSWRT
 
 - **ArchLinux**: 从AUR里面安装 `$ yaourt -S freedom-routes`
 - **Mac OS X**: `$ brew install sabersalv/alt/freedom-routes`
-- **Windows**: 下载[x64](http://downloads.saber.li/freedom-routes/freedom-routes.windows.amd64.zip)(64位), [x86](http://downloads.saber.li/freedom-routes/freedom-routes.windows.386.zip)(32位)
+- **Windows**: 下载[x64](http://dl.saber.li/freedom-routes/freedom-routes.windows.amd64.zip)(64位), [x86](http://dl.saber.li/freedom-routes/freedom-routes.windows.386.zip)(32位)
 
 # 开发
 

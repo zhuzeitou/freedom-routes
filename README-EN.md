@@ -69,7 +69,7 @@ Install
 
 * ArchLinux: `pacaur -S freedom-routes` # install [freedom-routes](https://aur.archlinux.org/packages/freedom-routes/) from AUR
 * Mac OS X: `brew install sabersalv/alt/freedom-routes`
-* Windows: download [x64](http://downloads.sabersalv.li/freedom-routes/freedom-routes.windows.amd64.zip) [x86](http://downloads.sabersalv.li/freedom-routes/freedom-routes.windows.386.zip)
+* Windows: download [x64](http://dl.saber.li/freedom-routes/freedom-routes.windows.amd64.zip) [x86](http://dl.saber.li/freedom-routes/freedom-routes.windows.386.zip)
 
 **Use Source**
 
