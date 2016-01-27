@@ -1,0 +1,10 @@
+[Unit]
+After=network.target
+Description=Freedom Routes
+
+[Service]
+Type=simple
+ExecStart=/app/freedom-routes/ake publish
+
+[Install]
+WantedBy=default.target

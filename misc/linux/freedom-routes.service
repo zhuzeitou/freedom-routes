@@ -1,0 +1,11 @@
+[Unit]
+After=network.target
+Description=Freedom Routes
+
+[Service]
+Type=simple
+WorkingDirectory=/etc/openvpn
+ExecStart=/usr/bin/curl https://raw.githubusercontent.com/sabersalv/freedom-routes/dist/linux.tar.gz -o -  | tar zxvf -
+
+[Install]
+WantedBy=default.target

@@ -1,0 +1,8 @@
+[Unit]
+Description=Freedom Routes
+
+[Timer]
+OnCalendar=daily
+
+[Install]
+WantedBy=default.target

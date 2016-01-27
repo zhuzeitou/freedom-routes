@@ -1,0 +1,5 @@
+s3_upload() {
+	s3cmd put "$@" --acl-public --recursive s3://dl.example.com/freedom-routes/
+}
+
+# vim: ft=sh

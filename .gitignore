@@ -1,0 +1,5 @@
+test_tmp/
+dist/
+tmp/
+!*.dll
+/run
