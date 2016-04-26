@@ -59,7 +59,7 @@ Windows需要右键routes-up.bat -> 已管理员身份运行.
 (PPTP)
 
 ```
-cp routes-up.sh /etc/ppp/ip-pre-up
+cp routes-up.sh /etc/ppp/ip-up
 cp routes-down.sh /etc/ppp/ip-down.d/ip-down
 ```
 
