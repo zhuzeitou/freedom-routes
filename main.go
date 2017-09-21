@@ -1,8 +1,8 @@
 package main
 
 import (
-	"github.com/codegangsta/cli"
-	"github.com/sabersalv/freedom-routes/routes"
+	"github.com/urfave/cli"
+	"github.com/zhuzeitou/freedom-routes/routes"
 	"os"
 	"path/filepath"
 )
