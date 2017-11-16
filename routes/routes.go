@@ -16,7 +16,7 @@ import (
 	"text/template"
 )
 
-const ASSETS_MODE = "source"
+const ASSETS_MODE = "runtime"
 
 var ASSETS_PATH = getAssetsPath(ASSETS_MODE)
 var REMOTE_URL = "http://ftp.apnic.net/apnic/stats/apnic/delegated-apnic-latest"
